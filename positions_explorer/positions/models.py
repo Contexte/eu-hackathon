@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from .managers import AxisManager
@@ -14,6 +15,12 @@ class Axis(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('axis-detail', args=[self.id])
+
+    def get_random_contributor(self):
+        return self.contributor_set.order_by('?').first()
 
 
 class AxisValues(models.Model):
