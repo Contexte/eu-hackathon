@@ -38,4 +38,4 @@ class Contributor(models.Model):
     )
 
     kind = models.CharField(max_length=19, choices=CONTRIBUTOR_KINDS, default=PUBLISHER)
-    contribution_axis = models.ForeignKey(Axis)
+    contribution_axes = models.ManyToManyField(Axis)
