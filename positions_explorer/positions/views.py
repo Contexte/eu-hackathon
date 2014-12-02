@@ -13,7 +13,9 @@ class Home(TemplateView):
         context = super(Home, self).get_context_data(**kwargs)
         context['total_positions'] = models.Contributor.objects.all().count()
         # FIXME: filter by state below
-        context['total_processed_positions'] = models.Contributor.objects.filter().count()
+        context['total_processed_positions'] = models.Contributor.objects.filter(
+            status=models.Contributor.STATUS_QUALIFIED
+        ).count()
         context['processed_percentage'] = (context['total_processed_positions'] / context['total_positions']) * 100
         return context
 
