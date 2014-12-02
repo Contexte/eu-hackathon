@@ -3,7 +3,7 @@
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from .managers import AxisManager
+from .managers import AxisManager, ContributorManager
 
 
 class Axis(models.Model):
@@ -17,10 +17,7 @@ class Axis(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('axis-detail', args=[self.id])
-
-    def get_random_contributor(self):
-        return self.contributor_set.order_by('?').first()
+        return reverse('axis-detail', args=(self.id,))
 
 
 class AxisValues(models.Model):
@@ -55,7 +52,6 @@ class Contributor(models.Model):
     )
 
     kind = models.CharField(max_length=19, choices=CONTRIBUTOR_KINDS, default=OTHER)
-    contribution_axes = models.ManyToManyField(Axis)
     contribution_values = models.ManyToManyField(AxisValues)
     contribution_file = models.FileField(null=True)
 
@@ -85,6 +81,8 @@ class Contributor(models.Model):
     update_date = models.TextField(null=True, blank=True)
 
     language_code = models.CharField(max_length=2)
+
+    objects = ContributorManager()
 
     def __unicode__(self):
         return unicode(self.name)
