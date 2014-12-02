@@ -12,6 +12,7 @@ class Axis(models.Model):
 class AxisValues(models.Model):
 
     axis = models.ForeignKey(Axis, related_name='values')
+    value = models.CharField(max_length=140)
 
 
 class Contributor(models.Model):
@@ -38,4 +39,3 @@ class Contributor(models.Model):
 
     kind = models.CharField(max_length=19, choices=CONTRIBUTOR_KINDS, default=PUBLISHER)
     contribution_axis = models.ForeignKey(Axis)
-    value = models.CharField(max_length=140)
