@@ -2,11 +2,15 @@
 
 from django.db import models
 
+from .managers import AxisManager
+
 
 class Axis(models.Model):
 
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=255)
+
+    objects = AxisManager()
 
     def __unicode__(self):
         return self.name
