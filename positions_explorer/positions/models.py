@@ -54,24 +54,45 @@ class Contributor(models.Model):
         (USER, u'User')
     )
 
+    STATUS_FILE = 0
+    STATUS_ID = 1
+    STATUS_DATA = 2
+    STATUS_QUALIFIED = 3
+
+    STATUS = (
+        (STATUS_FILE, u'File'),
+        (STATUS_ID, u'ID'),
+        (STATUS_DATA, u'Data'),
+        (STATUS_QUALIFIED, u'Qualified'),
+    )
+
+    # FIXME: map it
+    status = models.IntegerField(choices=STATUS, default=STATUS_FILE)
     kind = models.CharField(max_length=19, choices=CONTRIBUTOR_KINDS, default=OTHER)
-    contribution_axes = models.ManyToManyField(Axis)
-    contribution_values = models.ManyToManyField(AxisValues)
-    contribution_file = models.FileField(null=True)
+    contribution_axes = models.ManyToManyField(Axis, null=True, blank=True)
+    contribution_values = models.ManyToManyField(AxisValues, null=True, blank=True)
+    contribution_file = models.FileField(null=True, blank=True)
 
     # parser result fields
+    acronym = models.TextField(null=True, blank=True)
     activities = models.TextField(null=True, blank=True)
     area_of_interest = models.TextField(null=True, blank=True)
+    chief_contact_name = models.TextField(null=True, blank=True)
+    chief_contact_position = models.TextField(null=True, blank=True)
     countries = models.TextField(null=True, blank=True)
     extra_financial_info = models.TextField(null=True, blank=True)
     fax_number = models.TextField(null=True, blank=True)
+    fields_of_interest = models.TextField(null=True, blank=True)
     financial_year = models.TextField(null=True, blank=True)
     goals = models.TextField(null=True, blank=True)
     head_office_address = models.TextField(null=True, blank=True)
     original_id = models.TextField(null=True, blank=True)
+    legal_status = models.TextField(null=True, blank=True)
+    lobbying_activties = models.TextField(null=True, blank=True)
     lobbying_expenditure = models.TextField(null=True, blank=True)
     lobbying_section = models.TextField(null=True, blank=True)
     lobbying_subsection = models.TextField(null=True, blank=True)
+    lobbyists_contact_name = models.TextField(null=True, blank=True)
     lobbyists_contact_position = models.TextField(null=True, blank=True)
     name = models.TextField(null=True, blank=True)
     networking = models.TextField(null=True, blank=True)
@@ -80,11 +101,14 @@ class Contributor(models.Model):
     org_members = models.TextField(null=True, blank=True)
     register_url = models.TextField(null=True, blank=True)
     registration_date = models.TextField(null=True, blank=True)
+    rep_name = models.TextField(null=True, blank=True)
     retrieved_at = models.TextField(null=True, blank=True)
+    scrape_date = models.TextField(null=True, blank=True)
     telephone = models.TextField(null=True, blank=True)
     update_date = models.TextField(null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
 
-    language_code = models.CharField(max_length=2)
+    language_code = models.CharField(max_length=2, null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.name)

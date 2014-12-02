@@ -14,7 +14,7 @@ class AxisAdmin(admin.ModelAdmin):
 
 
 class ContributorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('__unicode__', 'original_id', 'status')
 
 
 admin.site.register(models.AxisValues)
