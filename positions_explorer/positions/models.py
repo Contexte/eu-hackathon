@@ -2,17 +2,27 @@
 
 from django.db import models
 
+from .managers import AxisManager
+
 
 class Axis(models.Model):
 
     name = models.CharField(max_length=64)
     description = models.CharField(max_length=255)
 
+    objects = AxisManager()
+
+    def __unicode__(self):
+        return self.name
+
 
 class AxisValues(models.Model):
 
     axis = models.ForeignKey(Axis, related_name='values')
     value = models.CharField(max_length=140)
+
+    def __unicode__(self):
+        return self.value
 
 
 class Contributor(models.Model):
@@ -66,3 +76,11 @@ class Contributor(models.Model):
     retrieved_at = models.TextField(null=True, blank=True)
     telephone = models.TextField(null=True, blank=True)
     update_date = models.TextField(null=True, blank=True)
+
+    language_code = models.CharField(max_length=2)
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    def contribution_values_by_axis(self, axis):
+        return self.contribution_values.filter(axis=axis)
