@@ -40,3 +40,4 @@ class Contributor(models.Model):
     kind = models.CharField(max_length=19, choices=CONTRIBUTOR_KINDS, default=PUBLISHER)
     contribution_axes = models.ManyToManyField(Axis)
     contribution_values = models.ManyToManyField(AxisValues)
+    contribution_file = models.FileField(null=True)
