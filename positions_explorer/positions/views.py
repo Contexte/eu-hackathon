@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
-# Create your views here.
+from . import models
+
+
+class ContributorsList(ListView):
+
+    model = models.Contributor
+
+
+class ContributorDetail(DetailView):
+
+    model = models.Contributor
