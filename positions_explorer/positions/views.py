@@ -9,6 +9,11 @@ class ContributorsList(ListView):
     model = models.Contributor
 
 
-class ContributorDetail(DetailView):
+class AxisDetail(DetailView):
 
-    model = models.Contributor
+    model = models.Axis
+
+    def get_object(self):
+        if self.kwargs.get('pk'):
+            return super(AxisDetail, self).get_object()
+        return models.Axis.objects.get_random_axis()
