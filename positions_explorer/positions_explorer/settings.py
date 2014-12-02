@@ -95,5 +95,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT')
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '')
 MEDIA_URL = '/documents/'
