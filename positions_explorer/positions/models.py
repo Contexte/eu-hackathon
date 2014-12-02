@@ -32,7 +32,7 @@ class Contributor(models.Model):
         (CMOS, u'CMOS'),
         (INSTITUTIONAL_USER, 'Institutional user'),
         (OTHER, u'Other'),
-        (PUBLISHER, u'Éditeur'),
+        (PUBLISHER, u'Editor'),
         (SERVICE_PROVIDER, u'Service provider'),
         (USER, u'User')
     )
