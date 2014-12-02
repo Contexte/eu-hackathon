@@ -73,6 +73,8 @@ class Contributor(models.Model):
     telephone = models.TextField(null=True, blank=True)
     update_date = models.TextField(null=True, blank=True)
 
+    language_code = models.CharField(max_length=2)
+
     def __unicode__(self):
         return unicode(self.name)
 
