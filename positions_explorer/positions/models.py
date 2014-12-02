@@ -75,3 +75,6 @@ class Contributor(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
+
+    def contribution_values_by_axis(self, axis):
+        return self.contribution_values.filter(axis=axis)
