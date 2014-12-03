@@ -172,6 +172,13 @@ body {
   width: 66.66666%;
 }
 
+.col-document {
+  padding: 0;
+}
+.col-values {
+  padding-left: 50px;
+}
+
 .axis-description {
   padding-top: 1.8em;
 }
