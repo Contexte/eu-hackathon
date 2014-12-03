@@ -54,5 +54,6 @@ class AxisDetail(DetailView):
         context['contributor'] = models.Contributor.objects.get_random_contributor(
             languages=self.get_languages_codes_from_request()
         )
-        context['form'] = forms.AxisValuesForm(axis=self.object, contributor_pk=context['contributor'].pk)
+        if context['contributor']:
+            context['form'] = forms.AxisValuesForm(axis=self.object, contributor_pk=context['contributor'].pk)
         return context
