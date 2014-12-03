@@ -7,7 +7,6 @@ def get_random_object_from_queryset(queryset):
 class AxisManager(models.Manager):
 
     def get_random_axis(self, languages=[]):
-        # TODO: verify that a contributor with the given language exists
         axis = get_random_object_from_queryset(self)
         rejected = []
         while axis.is_fully_qualified and axis.has_contributor_for_languages(languages):
