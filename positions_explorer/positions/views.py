@@ -57,3 +57,7 @@ class AxisDetail(DetailView):
         if context['contributor']:
             context['form'] = forms.AxisValuesForm(axis=self.object, contributor_pk=context['contributor'].pk)
         return context
+
+class AxisResults(DetailView):
+    model = models.Axis
+
