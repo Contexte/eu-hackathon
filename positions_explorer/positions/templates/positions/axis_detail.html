@@ -58,7 +58,7 @@
         <form action="{{ axis.get_absolute_url }}" method="post">
           {% csrf_token %}
           {{ form }}
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" class="pure-button button-success"/>
         </form>
 
         <div class="element-l">About the contributor:</div>
@@ -84,6 +84,16 @@
         {% endif %}
         </ul>
 
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col col-done">
+
+        <div class="pure-button button-secondary button-large">I'm done, show me the results!</div>
 
       </div>
 

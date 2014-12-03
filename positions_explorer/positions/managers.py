@@ -12,6 +12,8 @@ class AxisManager(models.Manager):
         while axis and axis.is_fully_qualified and axis.has_contributor_for_languages(languages):
             rejected.append(axis.pk)
             axis = get_random_object_from_queryset(self.exclude(pk__in=rejected))
+            if not axis:
+                break
         return axis
 
 
@@ -23,3 +25,6 @@ class ContributorManager(models.Manager):
             status=Contributor.STATUS_DATA,
             language_code__in=languages
         ).order_by('?').first()
+
+    def get_by_axis(self, axis):
+        return self.filter(contribution_values__axis=axis)
