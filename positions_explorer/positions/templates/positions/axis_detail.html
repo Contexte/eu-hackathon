@@ -47,6 +47,7 @@
 
       <div class="col col-66 col-document">
 
+          <a href="{{ contributor.contribution_file }}">Download the contribution</a>
         <img src="{% static 'img/document.png' %}" alt="Document">
 
       </div>
@@ -63,7 +64,9 @@
 
         <div class="element-l">About the contributor:</div>
         <ul>
+        {% if contributor.acronym %}
         <li><b>Acronym</b>: {{ contributor.acronym }}</li>
+        {% endif %}
 
         {% if contributor.org_type %}
         <li><b>Organisation type</b>: {{ contributor.org_type }}</li>
@@ -80,7 +83,7 @@
         <li>Activity: {{ contributor.activity }}</li>
         {% endif %}
         {% if contributor.website %}
-        <li>Website: {{ contributor.website }}</li>
+        <li><b>Website</b>: {{ contributor.website }}</li>
         {% endif %}
         </ul>
 
