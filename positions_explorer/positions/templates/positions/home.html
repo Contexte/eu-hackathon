@@ -7,11 +7,15 @@
       <div class="col">Blah…</div>
       <div class="col">
 
-        <div class="total_positions">{{ total_positions }}</div>
+        <div class="total_positions"><div class="element-m">Total positions: {{ total_positions }}</div></div>
 
-        <div class="total_processed_positions">{{ total_processed_positions }}</div>
+        <div class="total_processed_positions">
 
-        <div class="processed_percentage">{{ processed_percentage }}</div>
+          <div class="processed_percentage" style="width:{{ processed_percentage }}%;"></div>
+
+          <div class="element-m">Processed positions: {{ total_processed_positions }}</div>
+
+        </div>
 
       </div>
     </div>
