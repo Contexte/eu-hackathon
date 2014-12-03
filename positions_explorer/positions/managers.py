@@ -20,6 +20,6 @@ class ContributorManager(models.Manager):
     def get_random_contributor(self, languages=[]):
         from .models import Contributor
         return self.filter(
-            status__lt=Contributor.STATUS_QUALIFIED,
+            status=Contributor.STATUS_DATA,
             language_code__in=languages
         ).order_by('?').first()
