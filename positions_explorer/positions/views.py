@@ -75,6 +75,21 @@ class AxisResults(DetailView):
     def get_context_data(self, **kwargs):
         context = super(AxisResults, self).get_context_data(**kwargs)
         contributors = models.Contributor.objects.get_by_axis(self.object)
-        organisations = contributors.values_list('org_type', flat=True).distinct()
+        organisations_types = contributors.values_list('org_type', flat=True).distinct()
+        data = {}
+        context['organisations_types'] = data
+        for organisation_type in organisations_types:
+            subtypes = contributors.filter(org_type=organisation_type).values_list('org_subtype', flat=True).distinct()
+            data[organisation_type] = []
+            for subtype in subtypes:
+                data[organisation_type].append({
+                    'subtype': subtype,
+                    'positions': contributors.filter(org_type=organisation_type, org_subtype=subtype),
+                    'values': [],
+                })
+                for value in self.get_object().values.values_list('value', flat=True):
+                    data[organisation_type][-1]['values'].append({
+                        value: data[organisation_type][-1]['positions'].filter(contribution_values__value=value).count()
+                    })
 
         return context

@@ -21,25 +21,6 @@
     </div>
 
   </div>
-  <div class="zone zone-3">
-
-    <div class="row slice-main">
-
-      <div class="col col-33">
-
-          <div class="element-big">{{ contributor.name }}</div>
-
-      </div>
-
-      <div class="col col-66 axis-description">
-
-          {{ contributor.goals }}
-
-      </div>
-
-    </div>
-
-  </div>
 
   <div class="zone zone-2">
 
@@ -47,7 +28,7 @@
 
       <div class="col col-66 col-document">
 
-          <a href="{{ contributor.contribution_file }}">Download the contribution</a>
+          <a href="/media/{{ contributor.contribution_file }}">Download the contribution</a>
         <img src="{% static 'img/document.png' %}" alt="Document">
 
       </div>
@@ -62,32 +43,36 @@
           <input type="submit" value="Submit" class="pure-button button-success"/>
         </form>
 
-        <div class="element-l">About the contributor:</div>
-        <ul>
-        {% if contributor.acronym %}
-        <li><b>Acronym</b>: {{ contributor.acronym }}</li>
-        {% endif %}
+        <div class="contributor-description">
+            <div class="element-l">About the contributor:</div>
+                <ul>
+                {% if contributor.name %}
+                <li><b>Name</b>: {{ contributor.name }}</li>
+                {% endif %}
+                {% if contributor.acronym %}
+                <li><b>Acronym</b>: {{ contributor.acronym }}</li>
+                {% endif %}
 
-        {% if contributor.org_type %}
-        <li><b>Organisation type</b>: {{ contributor.org_type }}</li>
-        {% endif %}
+                {% if contributor.org_type %}
+                <li><b>Organisation type</b>: {{ contributor.org_type }}</li>
+                {% endif %}
 
-        {% if contributor.org_subtype %}
-        <li><b>Organisation subtype</b>: {{ contributor.org_subtype }}</li>
-        {% endif %}
-        {% if contributor.members %}
-        <li><b>Members:</b>{{ contributor.members }} </li>
-        {% endif %}
+                {% if contributor.org_subtype %}
+                <li><b>Organisation subtype</b>: {{ contributor.org_subtype }}</li>
+                {% endif %}
+                {% if contributor.members %}
+                <li><b>Members:</b>{{ contributor.members }} </li>
+                {% endif %}
 
-        {% if contributor.activity %}
-        <li>Activity: {{ contributor.activity }}</li>
-        {% endif %}
-        {% if contributor.website %}
-        <li><b>Website</b>: {{ contributor.website }}</li>
-        {% endif %}
-        </ul>
-
-
+                {% if contributor.activity %}
+                <li>Activity: {{ contributor.activity }}</li>
+                {% endif %}
+                {% if contributor.website %}
+                <li><b>Website</b>: {{ contributor.website }}</li>
+                {% endif %}
+                </ul>
+          </div>
+          <div class="read-more"><a href="#">Read more…</a></div>
       </div>
 
     </div>
@@ -96,7 +81,8 @@
 
       <div class="col col-done">
 
-        <div class="pure-button button-secondary button-large">I'm done, show me the results!</div>
+          <a class="pure-button button-secondary button-large" href="/axis/results/2">I'm done, show me the results!</a>
+
 
       </div>
 
