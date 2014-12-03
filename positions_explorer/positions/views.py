@@ -1,5 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
+from django.core.urlresolvers import reverse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 from . import models
@@ -36,13 +38,14 @@ class AxisDetail(DetailView):
     def post(self, request, *args, **kwargs):
         form = forms.AxisValuesForm(
             data=request.POST, axis=self.get_object(),
-            contributor_pk=request.POST['contributor'][0]
+            contributor_pk=request.POST['contributor']
         )
         if form.is_valid():
             contributor = form.cleaned_data['contributor']
             contributor.contribution_values.add(*form.cleaned_data['values'])
             contributor.status = contributor.STATUS_QUALIFIED
             contributor.save()
+        return HttpResponseRedirect(reverse('random-axis'))
 
     def get_object(self):
         if self.kwargs.get('pk'):
@@ -59,5 +62,13 @@ class AxisDetail(DetailView):
         return context
 
 class AxisResults(DetailView):
-    model = models.Axis
 
+    model = models.Axis
+    template_name = 'positions/axis_results.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AxisResults, self).get_context_data(**kwargs)
+        contributors = models.Contributor.objects.get_by_axis(self.object)
+        organisations = contributors.values_list('org_type', flat=True).distinct()
+
+        return context
