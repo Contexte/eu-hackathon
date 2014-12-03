@@ -98,4 +98,4 @@ STATIC_ROOT = os.environ.get('STATIC_ROOT', PROJECT_DIR + '/static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.environ.get('MEDIA_ROOT', PROJECT_DIR + '/media')
-MEDIA_URL = '/documents/'
+MEDIA_URL = '/media/'
