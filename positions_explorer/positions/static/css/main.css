@@ -285,9 +285,15 @@ img {
 .graph .col {
 }
 .graph-part {
-  background-color: #fc0;
+  background-color: #F77A3B;
   min-height: 3em;
   padding: .25em;
+}
+.graph-part.yellow {
+  background-color: #F8CA00;
+}
+.graph-part.green {
+  background-color: #8A9B0F;
 }
 .plus {
   text-decoration: none;
@@ -320,7 +326,6 @@ img {
   padding: 0 .25em;
   color: #56536E;
 }
-
 
 .contributor-description {
   border-bottom: 1px solid grey;
