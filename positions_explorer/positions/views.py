@@ -16,7 +16,10 @@ class Home(TemplateView):
         context['total_processed_positions'] = models.Contributor.objects.filter(
             status=models.Contributor.STATUS_QUALIFIED
         ).count()
-        context['processed_percentage'] = (context['total_processed_positions'] / context['total_positions']) * 100
+        try:
+            context['processed_percentage'] = (context['total_processed_positions'] / context['total_positions']) * 100
+        except ZeroDivisionError:
+            context['processed_percentage'] = 0
         return context
 
 
