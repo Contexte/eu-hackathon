@@ -14,6 +14,7 @@ import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_DIR = os.path.dirname(os.path.dirname(BASE_DIR))
 
 
 # Quick-start development settings - unsuitable for production
@@ -95,5 +96,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT', '')
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', PROJECT_DIR + '/media')
 MEDIA_URL = '/documents/'

@@ -67,11 +67,14 @@ class Contributor(models.Model):
         (STATUS_QUALIFIED, u'Qualified'),
     )
 
-    # FIXME: map it
     status = models.IntegerField(choices=STATUS, default=STATUS_FILE)
+
+    # FIXME: map it
     kind = models.CharField(max_length=19, choices=CONTRIBUTOR_KINDS, default=OTHER)
     contribution_values = models.ManyToManyField(AxisValues, null=True, blank=True)
     contribution_file = models.FileField(null=True, blank=True)
+    org_type = models.CharField(max_length=40, null=True, blank=True)
+    org_subtype = models.CharField(max_length=40, null=True, blank=True)
 
     # parser result fields
     acronym = models.TextField(null=True, blank=True)

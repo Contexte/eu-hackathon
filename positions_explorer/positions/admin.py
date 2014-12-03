@@ -14,7 +14,8 @@ class AxisAdmin(admin.ModelAdmin):
 
 
 class ContributorAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'original_id', 'status')
+    list_display = ('__unicode__', 'original_id', 'org_type', 'org_subtype', 'language_code', 'status')
+    list_filter = ('status', 'language_code', 'org_type', 'org_subtype')
 
 
 admin.site.register(models.AxisValues)
