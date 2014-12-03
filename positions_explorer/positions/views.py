@@ -1,3 +1,4 @@
+from string import split
 from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
@@ -60,6 +61,7 @@ class AxisDetail(DetailView):
         context['contributor'] = models.Contributor.objects.get(pk=493)
         print context['contributor']
         import pprint; pprint.pprint(vars(context['contributor']))
+        context['contributor'].members = ', '.join(split(context['contributor'].org_members, ';'))
         if context['contributor']:
             context['form'] = forms.AxisValuesForm(axis=self.object, contributor_pk=context['contributor'].pk)
         return context
