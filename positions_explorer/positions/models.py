@@ -19,6 +19,10 @@ class Axis(models.Model):
     def get_absolute_url(self):
         return reverse('axis-detail', args=(self.id,))
 
+    @property
+    def is_fully_qualified(self):
+        return not Contributor.objects.exclude(contribution_values__axis=self).exists()
+
 
 class AxisValues(models.Model):
 
