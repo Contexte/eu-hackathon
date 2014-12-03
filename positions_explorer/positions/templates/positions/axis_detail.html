@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{% static 'css/forms.css' %}">
   <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
-<body>
+<body class="debug">
   <!--[if lt IE 7]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -37,9 +37,10 @@
   <div class="zone zone-1">
 
     <div class="row slice-main">
+
       <div class="col">
 
-        hgfhfgd
+        <div class="element-big">Axis: nom de l'axe</div>
 
       </div>
     </div>
@@ -50,7 +51,15 @@
 
     <div class="row slice-main">
 
+      <div class="col col-66">
+
+        Document ici
+
+      </div>
+
       <div class="col">
+
+        <div class="element-big">Values:</div>
 
         <form action="{{ axis.get_absolute_url }}" method="post">
           {% csrf_token %}

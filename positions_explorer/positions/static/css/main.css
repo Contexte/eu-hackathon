@@ -109,6 +109,10 @@ body {
  .col { display: table-cell; }
 }
 
+.debug .col {
+  border: 1px dotted orange;
+}
+
 .slice-main {
   margin: 0 auto;
   max-width: 64em;
@@ -137,7 +141,6 @@ body {
 }
 
 .col {
-  border: 1px dotted orange;
   padding: 1em;
 }
 
@@ -153,9 +156,18 @@ body {
 }
 
 
+.col-33 {
+  width: 33.33333%;
+}
+.col-66 {
+  width: 66.66666%;
+}
 
 
-
+#id_values {
+  list-style-type: none;
+  padding: 0;
+}
 
 
 
