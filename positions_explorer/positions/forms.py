@@ -7,7 +7,8 @@ class AxisValuesForm(forms.Form):
 
     values = forms.ModelMultipleChoiceField(
         models.AxisValues.objects.none(),
-        to_field_name='value'
+        to_field_name='value',
+        widget=forms.CheckboxSelectMultiple
     )
     contributor = forms.ModelChoiceField(
         models.Contributor.objects.none(),
