@@ -113,6 +113,10 @@ body {
  .col { display: table-cell; vertical-align: top; }
 }
 
+a {
+  color: #FF3836;
+}
+
 .debug .col {
   border: 1px dotted orange;
 }
@@ -315,6 +319,22 @@ img {
   margin-top: 10px;
   padding: 0 .25em;
   color: #56536E;
+}
+
+
+.contributor-description {
+  border-bottom: 1px solid grey;
+  max-height: 320px;
+  overflow: hidden;
+  margin-top: 3em;
+}
+.read-more {
+  text-align: center;
+  margin-top: 15px;
+}
+.read-more a {
+  display: inline-block;
+  text-decoration: none;
 }
 
 /* ==========================================================================

@@ -61,28 +61,34 @@
           <input type="submit" value="Submit" class="pure-button button-success"/>
         </form>
 
-        <div class="element-l">About the contributor:</div>
-        <ul>
-        <li><b>Acronym</b>: {{ contributor.acronym }}</li>
+        <div class="contributor-description">
 
-        {% if contributor.org_type %}
-        <li><b>Organisation type</b>: {{ contributor.org_type }}</li>
-        {% endif %}
+          <div class="element-m">About the contributor:</div>
 
-        {% if contributor.org_subtype %}
-        <li><b>Organisation subtype</b>: {{ contributor.org_subtype }}</li>
-        {% endif %}
-        {% if contributor.members %}
-        <li><b>Members:</b>{{ contributor.members }} </li>
-        {% endif %}
+          <ul>
+          <li><b>Acronym</b>: {{ contributor.acronym }}</li>
 
-        {% if contributor.activity %}
-        <li>Activity: {{ contributor.activity }}</li>
-        {% endif %}
-        {% if contributor.website %}
-        <li>Website: {{ contributor.website }}</li>
-        {% endif %}
-        </ul>
+          {% if contributor.org_type %}
+          <li><b>Organisation type</b>: {{ contributor.org_type }}</li>
+          {% endif %}
+
+          {% if contributor.org_subtype %}
+          <li><b>Organisation subtype</b>: {{ contributor.org_subtype }}</li>
+          {% endif %}
+          {% if contributor.members %}
+          <li><b>Members:</b>{{ contributor.members }} </li>
+          {% endif %}
+
+          {% if contributor.activity %}
+          <li>Activity: {{ contributor.activity }}</li>
+          {% endif %}
+          {% if contributor.website %}
+          <li>Website: {{ contributor.website }}</li>
+          {% endif %}
+          </ul>
+
+      </div>
+      <div class="read-more"><a href="#">Read more…</a></div>
 
 
       </div>
