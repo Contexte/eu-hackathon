@@ -1,17 +1,26 @@
 from django.db import models
 
+def get_random_object_from_queryset(queryset):
+    return queryset.order_by('?').first()
+
 
 class AxisManager(models.Manager):
 
-    def get_random_axis(self):
-        # TODO: filter by cleared status (i.e. not all contributors cleared)
+    def get_random_axis(self, languages=[]):
         # TODO: verify that a contributor with the given language exists
-        return self.order_by('?').first()
+        axis = get_random_object_from_queryset(self)
+        rejected = []
+        while axis.is_fully_qualified and axis.has_contributor_for_languages(languages):
+            rejected.append(axis.pk)
+            axis = get_random_object_from_queryset(self.exclude(pk__in=rejected))
+        return axis
 
 
 class ContributorManager(models.Manager):
 
-    def get_random_contributor(self):
-        # TODO: filter by cleared status (i.e. all contributors cleared)
-        # TODO: verify that a contributor with the given language exists
-        return self.order_by('?').first()
+    def get_random_contributor(self, languages=[]):
+        from .models import Contributor
+        return self.filter(
+            status__lt=Contributor.STATUS_QUALIFIED,
+            language_code__in=languages
+        ).order_by('?').first()
