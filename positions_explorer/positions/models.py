@@ -23,6 +23,9 @@ class Axis(models.Model):
     def is_fully_qualified(self):
         return not Contributor.objects.exclude(contribution_values__axis=self).exists()
 
+    def has_contributor_for_languages(self, languages=[]):
+        return Contributor.objects.exclude(contribution_values__axis=self).filter(language_code__in=languages).exists()
+
 
 class AxisValues(models.Model):
 
