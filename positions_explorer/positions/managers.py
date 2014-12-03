@@ -4,14 +4,17 @@ from django.db import models
 class AxisManager(models.Manager):
 
     def get_random_axis(self):
-        # TODO: filter by cleared status (i.e. not all contributors cleared)
+        from .models import Contributor
         # TODO: verify that a contributor with the given language exists
-        return self.order_by('?').first()
+        axis = self.order_by('?').first()
+        while axis.is_fully_qualified:
+            axis = self.order_by('?').first()
+        return axis
 
 
 class ContributorManager(models.Manager):
 
     def get_random_contributor(self):
-        # TODO: filter by cleared status (i.e. all contributors cleared)
+        from .models import Contributor
         # TODO: verify that a contributor with the given language exists
-        return self.order_by('?').first()
+        return self.filter(status__lt=Contributor.STATUS_QUALIFIED).order_by('?').first()
