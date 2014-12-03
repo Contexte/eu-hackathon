@@ -12,7 +12,6 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
         context['total_positions'] = models.Contributor.objects.all().count()
-        # FIXME: filter by state below
         context['total_processed_positions'] = models.Contributor.objects.filter(
             status=models.Contributor.STATUS_QUALIFIED
         ).count()
@@ -32,6 +31,7 @@ class AxisDetail(DetailView):
         if form.is_valid():
             contributor = form.cleaned_data['contributor']
             contributor.contribution_values.add(*form.cleaned_data['values'])
+            contributor.status = contributor.STATUS_QUALIFIED
             contributor.save()
 
     def get_object(self):
